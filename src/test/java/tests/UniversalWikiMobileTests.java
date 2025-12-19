@@ -3,14 +3,13 @@ package tests;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.*;
-
 @Owner("sergeyglukhov")
-@Tag("local")
+@Tags({@Tag("local"), @Tag("browserstack")})
 @DisplayName("Тесты для мобильного приложения Wikipedia")
-public class LocalWikiMobileTests extends TestBase {
+public class UniversalWikiMobileTests extends TestBase{
 
     @Test
     @DisplayName("Успешное прохождение стартовых экранов и проверка компонентов на главном экране")
@@ -27,27 +26,5 @@ public class LocalWikiMobileTests extends TestBase {
         mainScreen.checkThatSearchContainerIsVisible()
                 .checkThatHeaderImageIsVisible()
                 .checkHeader("Customize your Explore feed");
-    }
-
-    @Test
-    @DisplayName("Успешное открытие статьи")
-    void successfulArticleOpeningTest() {
-        back();
-        mainScreen
-                .enteringTextIntoSearchBar("board game")
-                .clickOnResult("Board game");
-
-        articleScreen
-                .closeModalWindow()
-                .checkArticleTitle("Board game");
-    }
-
-    @Test
-    @DisplayName("Успешный поиск по слову «Appium»")
-    void successfulSearchTest() {
-        back();
-        mainScreen
-                .enteringTextIntoSearchBar("Appium")
-                .checkTheFoundContent();
     }
 }

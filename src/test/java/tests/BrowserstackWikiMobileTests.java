@@ -11,41 +11,19 @@ import org.junit.jupiter.api.Test;
 public class BrowserstackWikiMobileTests extends TestBase {
 
     @Test
-    @DisplayName("Успешное прохождение стартовых экранов и проверка компонентов на главном экране")
-    void searchNewWikiTest() {
-        startScreen
-                .verifyWelcomePage("The Free Encyclopedia …in over 300 languages")
-                .clickOnForwardButton()
-                .verifyWelcomePage("New ways to explore")
-                .clickOnForwardButton()
-                .verifyWelcomePage("Reading lists with sync")
-                .clickOnForwardButton()
-                .verifyWelcomePage("Data & Privacy")
-                .clickOnDoneButton();
-
-        mainScreen
-                .checkThatSearchContainerIsVisible()
-                .checkThatHeaderImageIsVisible()
-                .checkHeader("Customize your Explore feed");
-    }
-
-    @Test
     @DisplayName("Успешное открытие статьи")
     void successfulArticleOpeningTest() {
-        mainScreen
-                .enteringTextIntoSearchBar("board game")
+        mainScreen.enteringTextIntoSearchBar("board game")
                 .clickOnResult("Board game");
 
-        articleScreen
-                .closeModalWindow()
+        articleScreen.closeModalWindow()
                 .checkArticleTitle("Board game");
     }
 
     @Test
     @DisplayName("Успешный поиск по слову «Appium»")
     void successfulSearchTest() {
-        mainScreen
-                .enteringTextIntoSearchBar("Appium")
+        mainScreen.enteringTextIntoSearchBar("Appium")
                 .checkTheFoundContent();
     }
 }
